@@ -19,7 +19,7 @@ public class FindAverage extends TickerBehaviour {
 
     // 1->2 Connection failures
     private final static double Connection_Failures = 0.2;
-    // 2->3 Connection network delay
+    // 6->9 Connection network delay
     private final static double Network_Delay = 0.15;
     private final static int MaxDelay = 10;
     private static final double Alpha = 0.3;
@@ -67,7 +67,7 @@ public class FindAverage extends TickerBehaviour {
 
         ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
         for (String linkedAgent : agent.linkedAgents) {
-            //if 1->2 connection then break it if probability more than 0.2
+            //if 1->2 connection failures 0.2
             if (agent.getAID().getLocalName().equals("1")
                     && linkedAgent.equals("2")) {
                 double connectionExistParam = Math.random();
@@ -77,7 +77,7 @@ public class FindAverage extends TickerBehaviour {
             }
             msg.addReceiver(new AID(linkedAgent, AID.ISLOCALNAME));
 
-            //if 6->9 connection then delay if probability more than 0.15
+            //if 6->9 network delay = 0.15
             if (agent.getAID().getLocalName().equals("6")
                     && linkedAgent.equals("9")) {
                 double networkDelay = Math.random();
